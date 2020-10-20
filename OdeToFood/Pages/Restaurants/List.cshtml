@@ -5,6 +5,19 @@
 
 <h1>Restaurant</h1>
 
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" class="form-control" asp-for="SearchTerm"/>
+            <span class="input-group-btn">
+                <button class="btn btn-group-vertical">
+                    <i class="navbar-toggler-icon"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+</form>
+
 <table class="table">
     @foreach(var restaurant in Model.Restaurants)
     {
@@ -12,15 +25,11 @@
             <td>@restaurant.Name</td>
             <td>@restaurant.Location</td>
             <td>@restaurant.Cuisine</td>
-            <td>@restaurant.Location</td>
-            <td>@restaurant.Cuisine</td>
+            <td>
+                <a class="btn btn-group-sm" asp-page="./Detail" asp-route-restaurantId="@restaurant.Id">Link</a>
+            </td>
         </tr>
     }
 </table>
 
-<p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</p>
+<p>Total restaurant: @Model.Restaurants.Count()</p>
